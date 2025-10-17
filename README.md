@@ -9,31 +9,11 @@ This is a simple Laravel controller that fetches a random cat fact from the [Cat
 
 ## Setup Instructions
 
-### 1️⃣ Add the Controller
+### 1️⃣ Clone the Repository
 
-Place the `CatApiController.php` file inside `app/Http/Controllers/`.
+Clone the repository using git clone https://github.com/dhamii/hng-stage0-backend/
 
-### 2️⃣ Define the Route
-
-Add a route in `routes/api.php`:
-
-```php
-use App\Http\Controllers\CatApiController;
-
-Route::get('/cat-fact', [CatApiController::class, 'index']);
-```
-
-### 3️⃣ Run the Laravel Server
-
-```bash
-php artisan serve
-```
-
-Visit: `http://127.0.0.1:8000/me`
-
----
-
-## Dependencies
+### 2️⃣ Install Dependencies
 
 * Laravel 7.x or above
 * PHP 8.x
@@ -44,14 +24,27 @@ Install dependencies:
 ```bash
 composer install
 ```
-
----
-
 ## Environment Variables
 
-No custom environment variables are required for this controller.
+Create and add your database credentials 
 
 ---
+
+## Run
+php artisan migrate
+### 3️⃣ Run the Laravel Server
+
+```bash
+php artisan serve
+```
+
+Visit: `http://127.0.0.1:8000/me`
+
+---
+
+
+---
+
 
 ## Example Response
 
