@@ -26,5 +26,5 @@ RUN composer install --no-interaction --optimize-autoloader
 # Expose port
 EXPOSE 8000
 
-# Use PHP's built-in server in a persistent foreground mode
+# Start Laravel using PHP's built-in server in foreground
 CMD ["php", "-S", "0.0.0.0:8000", "-t", "public"]
