@@ -1,19 +1,30 @@
-FROM php:8.2-fpm
+# Use official PHP image with Composer
+FROM php:8.3-cli
 
-# Install minimal dependencies (skip DB drivers)
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
-    git curl unzip libzip-dev zip \
+    git \
+    unzip \
+    curl \
+    libzip-dev \
+    libonig-dev \   # <-- ADD THIS
+    zip \
     && docker-php-ext-install mbstring zip
 
 # Install Composer
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-WORKDIR /var/www
+# Set working directory
+WORKDIR /var/www/html
 
-# Copy app files
+# Copy project files
 COPY . .
 
 # Install PHP dependencies
-RUN composer install --no-dev --optimize-autoloader
+RUN composer install --no-interaction
 
-CMD ["php-fpm"]
+# Expose port
+EXPOSE 8000
+
+# Start Laravel
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
